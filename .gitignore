@@ -1,0 +1,4 @@
+def.txt
+prop.txt
+__pycache__/
+*.pyc
