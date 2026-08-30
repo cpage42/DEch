@@ -7,10 +7,11 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Define the independent and dependent variables.
 t = sp.symbols('t')
-y = sp.Function('y')(t)
+y_func = sp.Function('y')
+y = y_func(t)
 
 # Create a dictionary so the parser knows what 't', 'y', 'Derivative', and 'Eq' mean
-local_dict = {'t': t, 'y': y, 'Derivative': sp.Derivative, 'Eq': sp.Eq}
+local_dict = {'t': t, 'y': y_func, 'Derivative': sp.Derivative, 'Eq': sp.Eq}
 
 # Read the string files using the absolute path
 with open(os.path.join(script_dir, "def.txt"), "r", encoding="utf-8") as file:
