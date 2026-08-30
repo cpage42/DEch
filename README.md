@@ -17,7 +17,7 @@ Under the hood, it uses [SymPy](https://www.sympy.org/) to parse both expression
 
 1. Clone the repo:
    ```powershell
-   git clone https://github.com/<your-username>/DEch.git
+   git clone https://github.com/cpage42/DEch.git
    cd DEch
    ```
 
