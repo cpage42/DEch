@@ -1,8 +1,8 @@
 import sys
 import os
 import re
-from sympy import Symbol, Function, Eq, Derivative
-from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application
+from sympy import Symbol, Function, Eq, Derivative, E
+from sympy.parsing.sympy_parser import parse_expr, standard_transformations, implicit_multiplication_application, convert_xor
 
 def parse_math(eq_str, is_diff_eq=True):
     # 1. Define symbols (Swapped 'x' for 't')
@@ -28,10 +28,10 @@ def parse_math(eq_str, is_diff_eq=True):
         lhs_str, rhs_str = eq_str, "0"
         
     # 5. Setup transformations (enables "2t" -> "2*t")
-    transformations = (standard_transformations + (implicit_multiplication_application,))
+    transformations = (standard_transformations + (implicit_multiplication_application, convert_xor))
     
     # Update dictionary to use 't'
-    local_dict = {'t': t, 'y': y, 'Derivative': Derivative}
+    local_dict = {'t': t, 'y': y, 'Derivative': Derivative, 'e': E}
     
     # 6. Parse both sides
     lhs = parse_expr(lhs_str, local_dict=local_dict, transformations=transformations)
